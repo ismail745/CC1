@@ -1,75 +1,135 @@
-# OrderMaster - Order Management Application
+# Système de Gestion de Commandes et Factures
 
-Web application developed with Angular and Express.js for managing customer orders.
+## Description du Projet
 
-## Prerequisites
+Ce projet est une application web complète de gestion de commandes et de factures, développée avec la stack MEAN (MongoDB, Express.js, Angular, Node.js). L'application permet aux utilisateurs de gérer les clients, les produits, et de créer des commandes avec calcul automatique des totaux HT et TTC.
 
-- Node.js (version 14.x or higher)
-- Angular CLI (`npm install -g @angular/cli`)
-- MongoDB (installed locally or using MongoDB Memory Server for development)
+## Architecture Technique
 
-## Installation
+### Backend (Node.js + Express.js)
+- **Base de données** : MongoDB avec Mongoose pour l'ORM
+- **API RESTful** : Endpoints pour la gestion des clients, produits et commandes
+- **Validation** : Vérification des données côté serveur
+- **Gestion des erreurs** : Logging détaillé et messages d'erreur personnalisés
 
-1. Clone the project
-```bash
-git clone https://github.com/Marouanof/OrderMaster.git
-cd OrderMaster
+### Frontend (Angular 17)
+- **Architecture** : Composants standalone
+- **Interface** : Formulaire dynamique de création de commandes
+- **Calculs** : Totaux HT et TTC automatiques
+- **Validation** : Vérification des données côté client
+
+## Modèles de Données
+
+### Client
+- Nom (obligatoire)
+- Âge (obligatoire)
+- Email (obligatoire, unique)
+
+### Produit
+- Libellé (obligatoire)
+- Prix unitaire HT (obligatoire)
+
+### Commande
+- Date (automatique)
+- Client (référence)
+- Lignes de commande (tableau)
+  - Produit (référence)
+  - Quantité (minimum 1)
+
+## Fonctionnalités Principales
+
+1. **Gestion des Clients**
+   - Création et modification des profils clients
+   - Validation des emails uniques
+   - Stockage des informations essentielles
+
+2. **Catalogue de Produits**
+   - Gestion des produits
+   - Prix unitaires HT
+   - Référencement simple
+
+3. **Système de Commandes**
+   - Création de commandes avec sélection client
+   - Ajout dynamique de lignes de commande
+   - Calcul automatique des totaux
+   - Validation des données avant envoi
+
+4. **Calculs Automatiques**
+   - Total HT par ligne
+   - Total HT global
+   - TVA (20% par défaut)
+   - Total TTC
+
+## Installation et Configuration
+
+1. **Prérequis**
+   - Node.js (version 14+)
+   - MongoDB (ou MongoDB Memory Server pour le développement)
+   - Angular CLI
+
+2. **Installation**
+   ```bash
+   # Cloner le projet
+   git clone https://github.com/ismail745/CC1.git
+   
+   # Installer les dépendances
+   npm install
+   
+   # Lancer le serveur de développement
+   npm start
+   ```
+
+3. **Configuration**
+   - Le serveur utilise MongoDB Memory Server par défaut
+   - Les variables d'environnement peuvent être configurées dans un fichier .env
+
+## Structure du Projet
+
+```
+project/
+├── server/                 # Backend
+│   ├── models/            # Modèles Mongoose
+│   │   ├── Client.js
+│   │   ├── Product.js
+│   │   └── Order.js
+│   ├── routes/            # Routes API
+│   │   ├── clients.js
+│   │   ├── products.js
+│   │   └── orders.js
+│   └── server.js          # Configuration du serveur
+├── src/                   # Frontend Angular
+│   ├── app/
+│   │   ├── app.component.ts
+│   │   ├── app.component.html
+│   │   └── services/
+│   └── ...
+└── package.json
 ```
 
-2. Install dependencies
+## Sécurité et Validation
+
+- Validation des données côté client et serveur
+- Protection contre les injections
+- Gestion des erreurs détaillée
+- Logging des opérations importantes
+
+## Tests
+
+Le projet inclut des tests unitaires avec Jasmine et Karma. Pour lancer les tests :
+
 ```bash
-npm install
+npm test
 ```
 
-## Configuration
+## Contribution
 
-The application uses MongoDB Memory Server for development, which means no MongoDB installation is required to get started.
+Les contributions sont les bienvenues. Pour contribuer :
 
-## Starting the Application
+1. Fork le projet
+2. Créez une branche (`git checkout -b feature/AmazingFeature`)
+3. Committez vos changements (`git commit -m 'Add AmazingFeature'`)
+4. Push vers la branche (`git push origin feature/AmazingFeature`)
+5. Ouvrez une Pull Request
 
-1. Start the backend server (Express.js)
-```bash
-npm run server
-```
-The server will start on http://localhost:3000
-
-2. In a new terminal, start the Angular application
-```bash
-ng serve
-```
-The application will be available at http://localhost:4200
-
-## Features
-
-- 📅 Current date display
-- 👥 Client selection from dropdown
-- 📝 Add/Remove order lines
-- 🛍️ Product selection with automatic price updates
-- 💰 Automatic total calculations (excluding and including tax)
-- 💾 Order saving
-- 📊 Stock management
-
-## Project Structure
-
-- `src/app/components/` : Angular components
-- `src/app/services/` : API management services
-- `src/app/models/` : Data interfaces and models
-- `server/` : Express.js server code
-
-## Technologies Used
-
-- Frontend: Angular, Bootstrap
-- Backend: Express.js, MongoDB Memory Server
-- Database: MongoDB
-
-## Contributing
-
-1. Fork the project
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-## Support
-
-For any questions or issues, please open an issue on GitHub.
+## Auteur 
+Ismail Kchibal
