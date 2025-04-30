@@ -1,0 +1,27 @@
+@import 'bootstrap/scss/bootstrap';
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.table {
+  margin-top: 20px;
+  
+  th {
+    background-color: #f8f9fa;
+  }
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.btn {
+  margin-right: 5px;
+}
+
+input[readonly] {
+  background-color: #f8f9fa;
+} 

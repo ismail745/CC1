@@ -1,0 +1,81 @@
+<div class="container mt-4">
+  <div class="row mb-4">
+    <div class="col-md-6">
+      <div class="form-group">
+        <label>Date du jour:</label>
+        <input type="text" class="form-control" [value]="currentDate | date:'dd/MM/yyyy'" readonly>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <label>Client:</label>
+        <select class="form-control" [(ngModel)]="selectedClient">
+          <option [ngValue]="null">Sélectionnez un client</option>
+          <option *ngFor="let client of clients" [ngValue]="client">
+            {{ client.nom }}
+          </option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Produit</th>
+          <th>Prix HT</th>
+          <th>Quantité</th>
+          <th>Total HT</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let line of orderLines; let i = index">
+          <td>
+            <select class="form-control" [(ngModel)]="line.product" (change)="onProductChange(line)">
+              <option [ngValue]="null">Sélectionnez un produit</option>
+              <option *ngFor="let product of products" [ngValue]="product">
+                {{ product.libelle }}
+              </option>
+            </select>
+          </td>
+          <td>
+            <input type="number" class="form-control" [(ngModel)]="line.priceHT" readonly>
+          </td>
+          <td>
+            <input type="number" class="form-control" [(ngModel)]="line.quantity" min="1">
+          </td>
+          <td>
+            <input type="number" class="form-control" [value]="calculateLineTotal(line)" readonly>
+          </td>
+          <td>
+            <button class="btn btn-danger" (click)="removeLine(i)">-</button>
+            <button class="btn btn-success ms-2" (click)="addNewLine()">+</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="row mt-4">
+    <div class="col-md-6">
+      <div class="form-group">
+        <label>Total HT:</label>
+        <input type="number" class="form-control" [value]="calculateTotalHT()" readonly>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <label>Total TTC (TVA {{ tvaRate }}%):</label>
+        <input type="number" class="form-control" [value]="calculateTotalTTC()" readonly>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mt-4">
+    <div class="col-12">
+      <button class="btn btn-primary" (click)="saveOrder()">Enregistrer la commande</button>
+    </div>
+  </div>
+</div> 
