@@ -3,7 +3,7 @@
 ## 📝 Description du Projet
 
 Ce projet est une application web complète de gestion de commandes et de factures, développée avec la stack **MEAN** (MongoDB, Express.js, Angular, Node.js).  
-L'application permet aux utilisateurs de gérer les **clients**, les **produits**, et de **créer des commandes** avec calcul automatique des totaux **HT** et **TTC**.
+L'application permet aux utilisateurs de gérer les **commandes** avec calcul automatique des totaux **HT** et **TTC**.
 
 ## 🛠️ Architecture Technique
 
@@ -13,7 +13,7 @@ L'application permet aux utilisateurs de gérer les **clients**, les **produits*
 - ✅ **Validation** : Vérification des données côté serveur  
 - ⚠️ **Gestion des erreurs** : Logging détaillé et messages d'erreur personnalisés  
 
-### 🔜 Frontend (Angular 17)
+### 🔜 Frontend (Angular)
 - 🧩 **Architecture** : Composants standalone  
 - 🖊️ **Interface** : Formulaire dynamique de création de commandes  
 - ➗ **Calculs** : Totaux HT et TTC automatiques  
@@ -39,23 +39,13 @@ L'application permet aux utilisateurs de gérer les **clients**, les **produits*
 
 ## 🚀 Fonctionnalités Principales
 
-1. 👥 **Gestion des Clients**
-   - Création et modification des profils clients  
-   - Validation des emails uniques  
-   - Stockage des informations essentielles  
-
-2. 🛍️ **Catalogue de Produits**
-   - Gestion des produits  
-   - Prix unitaires HT  
-   - Référencement simple  
-
-3. 🧾 **Système de Commandes**
+1. 🧾 **Système de Commandes**
    - Création de commandes avec sélection client  
    - Ajout dynamique de lignes de commande  
    - Calcul automatique des totaux  
    - Validation des données avant envoi  
 
-4. 🧮 **Calculs Automatiques**
+2. 🧮 **Calculs Automatiques**
    - Total HT par ligne  
    - Total HT global  
    - TVA (20% par défaut)  
@@ -64,7 +54,7 @@ L'application permet aux utilisateurs de gérer les **clients**, les **produits*
 ## ⚙️ Installation et Configuration
 
 ### 📋 Prérequis
-- 🟢 Node.js (version 14+)  
+- 🟢 Node.js  
 - 🗄️ MongoDB (ou MongoDB Memory Server pour le développement)  
 - 🅰️ Angular CLI  
 
