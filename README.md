@@ -1,54 +1,55 @@
-# 📦FactureApp-MEAN
+# 📦 FactureApp-MEAN  
+> 💡 *La version bonus (PDF + Authentification) se trouve dans la branche `bonus`. Basculez sur cette branche pour y accéder.*
 
 ## 📝 Description du Projet
 
-Ce projet est une application web complète de gestion de commandes et de factures, développée avec la stack **MEAN** (MongoDB, Express.js, Angular, Node.js).  
-L'application permet aux utilisateurs de gérer les **commandes** avec calcul automatique des totaux **HT** et **TTC**.
+**FactureApp-MEAN** est une application web complète de gestion de commandes et de factures, développée avec la stack **MEAN** (MongoDB, Express.js, Angular, Node.js).  
+Elle permet aux utilisateurs de gérer les **commandes**, avec un calcul automatique des totaux **HT** et **TTC**.
 
 ## 🛠️ Architecture Technique
 
 ### 🔙 Backend (Node.js + Express.js)
-- 🗃️ **Base de données** : MongoDB avec Mongoose pour l'ORM  
-- 🌐 **API RESTful** : Endpoints pour la gestion des clients, produits et commandes  
-- ✅ **Validation** : Vérification des données côté serveur  
-- ⚠️ **Gestion des erreurs** : Logging détaillé et messages d'erreur personnalisés  
+- 🗃️ **Base de données** : MongoDB avec Mongoose comme ORM  
+- 🌐 **API RESTful** : Endpoints pour gérer les clients, produits et commandes  
+- ✅ **Validation** : Contrôle des données côté serveur  
+- ⚠️ **Gestion des erreurs** : Logs détaillés et messages d’erreur personnalisés  
 
 ### 🔜 Frontend (Angular)
-- 🧩 **Architecture** : Composants standalone  
-- 🖊️ **Interface** : Formulaire dynamique de création de commandes  
-- ➗ **Calculs** : Totaux HT et TTC automatiques  
-- 🔍 **Validation** : Vérification des données côté client  
+- 🧩 **Architecture modulaire** : Composants autonomes  
+- 🖊️ **Interface utilisateur** : Formulaires dynamiques de création de commandes  
+- ➗ **Calculs automatiques** : Totaux HT et TTC en temps réel  
+- 🔍 **Validation** : Vérification des champs côté client  
 
-## 🗃️ Modèles de Données
+## 🗃️ Modélisation des Données
 
 ### 👤 Client
-- 🏷️ Nom (obligatoire)  
-- 🎂 Âge (obligatoire)  
-- 📧 Email (obligatoire, unique)  
+- 🏷️ Nom *(obligatoire)*  
+- 🎂 Âge *(obligatoire)*  
+- 📧 Email *(obligatoire et unique)*  
 
 ### 📦 Produit
-- 🏷️ Libellé (obligatoire)  
-- 💰 Prix unitaire HT (obligatoire)  
+- 🏷️ Libellé *(obligatoire)*  
+- 💰 Prix unitaire HT *(obligatoire)*  
 
 ### 📑 Commande
-- 📅 Date (automatique)  
-- 👤 Client (référence)  
-- 📄 Lignes de commande (tableau)  
-  - 📦 Produit (référence)  
-  - 🔢 Quantité (minimum 1)  
+- 📅 Date *(générée automatiquement)*  
+- 👤 Client *(référence)*  
+- 📄 Lignes de commande *(tableau)*  
+  - 📦 Produit *(référence)*  
+  - 🔢 Quantité *(minimum : 1)*  
 
 ## 🚀 Fonctionnalités Principales
 
-1. 🧾 **Système de Commandes**
-   - Création de commandes avec sélection client  
+1. 🧾 **Gestion des Commandes**
+   - Sélection d’un client  
    - Ajout dynamique de lignes de commande  
    - Calcul automatique des totaux  
-   - Validation des données avant envoi  
+   - Validation complète avant envoi  
 
-2. 🧮 **Calculs Automatiques**
+2. 🧮 **Calculs Automatisés**
    - Total HT par ligne  
    - Total HT global  
-   - TVA (20% par défaut)  
+   - TVA à 20 % (modifiable si besoin)  
    - Total TTC  
 
 ## ⚙️ Installation et Configuration
@@ -58,21 +59,21 @@ L'application permet aux utilisateurs de gérer les **commandes** avec calcul au
 - 🗄️ MongoDB (ou MongoDB Memory Server pour le développement)  
 - 🅰️ Angular CLI  
 
-### 📦 Installation
+### 📦 Étapes d'installation
 ```bash
-# Cloner le projet
+# Cloner le dépôt
 git clone https://github.com/ismail745/CC1.git
 
 # Installer les dépendances
 npm install
 
-# Lancer le serveur de développement
+# Démarrer le serveur de développement
 npm start
 ```
 
 ### 🛠️ Configuration
-- Le serveur utilise MongoDB Memory Server par défaut  
-- Les variables d'environnement peuvent être configurées dans un fichier `.env`
+- Utilisation par défaut de **MongoDB Memory Server**  
+- Fichier `.env` pour définir les variables d’environnement  
 
 ## 🗂️ Structure du Projet
 
@@ -87,7 +88,7 @@ project/
 │   │   ├── clients.js
 │   │   ├── products.js
 │   │   └── orders.js
-│   └── server.js          # Configuration du serveur
+│   └── server.js          # Point d’entrée du serveur
 ├── src/                   # Frontend Angular
 │   ├── app/
 │   │   ├── app.component.ts
@@ -101,12 +102,13 @@ project/
 
 - ✅ Validation des données côté client et serveur  
 - 🛡️ Protection contre les injections  
-- 🧾 Gestion des erreurs détaillée  
-- 📝 Logging des opérations importantes  
+- ⚠️ Gestion détaillée des erreurs  
+- 📝 Journalisation des opérations sensibles  
 
 ## 🧪 Tests
 
-Le projet inclut des **tests unitaires** avec **Jasmine** et **Karma**. Pour lancer les tests :
+Le projet inclut des **tests unitaires** avec **Jasmine** et **Karma**.  
+Pour exécuter les tests :
 
 ```bash
 npm test
@@ -115,13 +117,13 @@ npm test
 ## 🤝 Contribution
 
 Les contributions sont les bienvenues !  
-Pour contribuer :
+Pour participer :
 
-1. 🔀 Fork le projet  
-2. 🌿 Créez une branche (`git checkout -b feature/AmazingFeature`)  
-3. 💾 Committez vos changements (`git commit -m 'Add AmazingFeature'`)  
-4. 📤 Push vers la branche (`git push origin feature/AmazingFeature`)  
-5. 📬 Ouvrez une Pull Request  
+1. 🔀 *Forkez* le dépôt  
+2. 🌿 Créez une branche (`git checkout -b feature/MaSuperFonctionnalité`)  
+3. 💾 Commitez vos modifications (`git commit -m 'Ajout de MaSuperFonctionnalité'`)  
+4. 📤 Poussez la branche (`git push origin feature/MaSuperFonctionnalité`)  
+5. 📬 Créez une Pull Request  
 
 ## 👨‍💻 Auteur  
 **Ismail Kchibal**
