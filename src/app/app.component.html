@@ -1,0 +1,100 @@
+<div class="app-container">
+  <header class="app-header">
+    <h1 class="app-title">FactureApp</h1>
+    <p class="app-subtitle">Gestion de factures professionnelles</p>
+  </header>
+
+  <div class="container mt-4">
+    <div class="card">
+      <div class="card-header bg-primary text-white">
+        <h2 class="card-title">Nouvelle Facture</h2>
+      </div>
+      <div class="card-body">
+        <div class="row mb-4">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class="form-label">Date:</label>
+              <input type="date" class="form-control" [(ngModel)]="currentDate">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class="form-label">Client:</label>
+              <select class="form-control" [(ngModel)]="selectedClient">
+                <option [ngValue]="null">Sélectionnez un client</option>
+                <option *ngFor="let client of clients" [ngValue]="client">
+                  {{ client.nom }}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="table-responsive">
+          <table class="table table-bordered table-hover">
+            <thead class="table-primary">
+              <tr>
+                <th>Produit</th>
+                <th>Prix HT</th>
+                <th>Quantité</th>
+                <th>Total HT</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let line of orderLines; let i = index">
+                <td>
+                  <select class="form-control" [(ngModel)]="line.product" (change)="onProductChange(line)">
+                    <option [ngValue]="null">Sélectionnez un produit</option>
+                    <option *ngFor="let product of getAvailableProducts(line)" [ngValue]="product">
+                      {{ product.libelle }}
+                    </option>
+                  </select>
+                </td>
+                <td>
+                  <input type="number" class="form-control" [(ngModel)]="line.priceHT" readonly>
+                </td>
+                <td>
+                  <input type="number" class="form-control" [(ngModel)]="line.quantity" min="1">
+                </td>
+                <td>
+                  <input type="number" class="form-control" [value]="calculateLineTotal(line)" readonly>
+                </td>
+                <td>
+                  <button class="btn btn-danger" (click)="removeLine(i)" [disabled]="i === 0">-</button>
+                  <button class="btn btn-success ms-2" (click)="addNewLine()">+</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="row mt-4">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class="form-label">Total HT:</label>
+              <input type="number" class="form-control" [value]="calculateTotalHT()" readonly>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class="form-label">Total TTC (TVA {{ tvaRate }}%):</label>
+              <input type="number" class="form-control" [value]="calculateTotalTTC()" readonly>
+            </div>
+          </div>
+        </div>
+
+        <div class="row mt-4">
+          <div class="col-12">
+            <button class="btn btn-primary me-2" (click)="saveOrder()">
+              <i class="fas fa-save"></i> Enregistrer la commande
+            </button>
+            <button class="btn btn-success" (click)="exportToPDF()">
+              <i class="fas fa-file-pdf"></i> Exporter en PDF
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 
